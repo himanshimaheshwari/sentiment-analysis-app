@@ -56,31 +56,6 @@ python app.py
 
 5. **Files download directly** to your Downloads folder with success notifications!
 
-### **🔧 Backend Magic:**
-```python
-@app.route('/download-charts')
-def download_charts():
-    # Create ZIP file in memory
-    zip_buffer = BytesIO()
-    with ZipFile(zip_buffer, 'w') as zip_file:
-        for key, base64_data in current_charts.items():
-            image_data = base64.b64decode(base64_data)
-            zip_file.writestr(chart_titles[key] + '.png', image_data)
-
-    return send_file(zip_buffer, as_attachment=True, 
-                    download_name='sentiment_charts_' + timestamp + '.zip')
-```
-
-### **🎨 Frontend Excellence:**
-```javascript
-downloadCharts() {
-    this.triggerDownload('/download-charts', 
-        'Charts download started! Check your Downloads folder.');
-}
-```
-
----
-
 ## 📊 **WHAT YOU'LL DOWNLOAD**
 
 ### **1. Charts ZIP File Contains:**
